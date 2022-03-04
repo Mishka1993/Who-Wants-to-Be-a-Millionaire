@@ -8,7 +8,8 @@
 import UIKit
 
 class MainSceneViewController: UIViewController {
-
+    @IBOutlet weak var newGame: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

@@ -7,23 +7,62 @@
 
 import UIKit
 
-class GameSceneViewController: UINavigationController {
+class GameSceneViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    var gameDelegate: GameActionDelegate?
+    @IBOutlet weak var questinText: UILabel!
+    @IBOutlet var Answers: [UIButton]!
+    
+    private var currentQuestionIndex = 0
+    private let gameResultStorage = GameResultStorage()
 
-        // Do any additional setup after loading the view.
+    private var currentQuestion: QuestionItem? {
+        didSet {
+            displayQuestion()
+        }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        Game.shared.setAllGameResults(resulsts: gameResultStorage.retrieveRecords())
+        startGame()
+        loadNewQuestion(isIntGame: true)
+        gameDelegate?.allQuestions = questions.count
     }
-    */
+    
+    private func loadNewQuestion(isIntGame: Bool = false) {
+        if !isIntGame {
+            currentQuestionIndex += 1
+        }
 
+        if !(currentQuestionIndex >= questions.startIndex && currentQuestionIndex < questions.endIndex) {
+            endOfGame()
+            return
+        }
+    }
+    
+    private func displayQuestion() {
+        questinText.text = currentQuestion?.question
+        //answerTableView.reloadData()
+    }
+    
+    private func endOfGame() {
+        dismiss(animated: true, completion: nil)
+        Game.shared.gameOver()
+    }
+    
+    private func checkAnswer(answer: Answer) {
+        if answer.isRight {
+            // next question
+            gameDelegate?.currentScoreGameSessin(scoreDelegate: answer.score)
+            loadNewQuestion()
+        } else {
+            // game over
+            endOfGame()
+        }
+    }
+    private func startGame() {
+        let gameSession = GameSession()
+        Game.shared.gameSession = gameSession
+    }
 }

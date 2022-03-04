@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5003E0E527CF871D008E044E /* GameDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5003E0E427CF871D008E044E /* GameDelegate.swift */; };
 		5003E0E827CF9633008E044E /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5003E0E727CF9633008E044E /* ResultViewController.swift */; };
+		5003E0EB27CF9BC3008E044E /* GameResultStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5003E0EA27CF9BC3008E044E /* GameResultStorage.swift */; };
+		5003E0ED27CF9C98008E044E /* GameResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5003E0EC27CF9C98008E044E /* GameResult.swift */; };
+		5003E0F027CF9D56008E044E /* cellResult.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5003E0EF27CF9D56008E044E /* cellResult.xib */; };
+		5003E0F227CF9D87008E044E /* ResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5003E0F127CF9D87008E044E /* ResultTableViewCell.swift */; };
 		504BB9B727CE5F720008963F /* Questions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504BB9B627CE5F720008963F /* Questions.swift */; };
 		504BB9B927CE6FB20008963F /* MainSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504BB9B827CE6FB20008963F /* MainSceneViewController.swift */; };
 		504BB9BB27CE730E0008963F /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504BB9BA27CE730E0008963F /* NavigationViewController.swift */; };
@@ -43,8 +46,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		5003E0E427CF871D008E044E /* GameDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDelegate.swift; sourceTree = "<group>"; };
 		5003E0E727CF9633008E044E /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
+		5003E0EA27CF9BC3008E044E /* GameResultStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResultStorage.swift; sourceTree = "<group>"; };
+		5003E0EC27CF9C98008E044E /* GameResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResult.swift; sourceTree = "<group>"; };
+		5003E0EF27CF9D56008E044E /* cellResult.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = cellResult.xib; sourceTree = "<group>"; };
+		5003E0F127CF9D87008E044E /* ResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultTableViewCell.swift; sourceTree = "<group>"; };
 		504BB9B627CE5F720008963F /* Questions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Questions.swift; sourceTree = "<group>"; };
 		504BB9B827CE6FB20008963F /* MainSceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSceneViewController.swift; sourceTree = "<group>"; };
 		504BB9BA27CE730E0008963F /* NavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
@@ -108,22 +114,35 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		5003E0EE27CF9D17008E044E /* StoryBoard */ = {
+			isa = PBXGroup;
+			children = (
+				5095ED9C27CE43300014CE3A /* Main.storyboard */,
+				5095EDA127CE43340014CE3A /* LaunchScreen.storyboard */,
+				5003E0EF27CF9D56008E044E /* cellResult.xib */,
+				5003E0F127CF9D87008E044E /* ResultTableViewCell.swift */,
+			);
+			path = StoryBoard;
+			sourceTree = "<group>";
+		};
 		504BB9B527CE5F430008963F /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				504BB9B627CE5F720008963F /* Questions.swift */,
+				5003E0EC27CF9C98008E044E /* GameResult.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
 		};
-		505BF78127CE8AE60092E1F2 /* Session */ = {
+		505BF78127CE8AE60092E1F2 /* Game logic and manager */ = {
 			isa = PBXGroup;
 			children = (
+				504BB9B527CE5F430008963F /* Model */,
 				505BF78227CE8B0A0092E1F2 /* Game.swift */,
 				505BF78427CE8B1D0092E1F2 /* GameSession.swift */,
-				5003E0E427CF871D008E044E /* GameDelegate.swift */,
+				5003E0EA27CF9BC3008E044E /* GameResultStorage.swift */,
 			);
-			path = Session;
+			path = "Game logic and manager";
 			sourceTree = "<group>";
 		};
 		5095ED8A27CE43300014CE3A = {
@@ -151,8 +170,7 @@
 			children = (
 				5095EDC627CE44D70014CE3A /* App */,
 				5095EDC827CE45090014CE3A /* Controllers */,
-				504BB9B527CE5F430008963F /* Model */,
-				505BF78127CE8AE60092E1F2 /* Session */,
+				505BF78127CE8AE60092E1F2 /* Game logic and manager */,
 				5095EDC927CE45410014CE3A /* Resource */,
 			);
 			path = "Who Wants to Be a Millionaire?";
@@ -197,9 +215,8 @@
 		5095EDC927CE45410014CE3A /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				5095ED9C27CE43300014CE3A /* Main.storyboard */,
+				5003E0EE27CF9D17008E044E /* StoryBoard */,
 				5095ED9F27CE43340014CE3A /* Assets.xcassets */,
-				5095EDA127CE43340014CE3A /* LaunchScreen.storyboard */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -310,6 +327,7 @@
 			files = (
 				5095EDA327CE43340014CE3A /* LaunchScreen.storyboard in Resources */,
 				5095EDA027CE43340014CE3A /* Assets.xcassets in Resources */,
+				5003E0F027CF9D56008E044E /* cellResult.xib in Resources */,
 				5095ED9E27CE43300014CE3A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -335,13 +353,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5003E0EB27CF9BC3008E044E /* GameResultStorage.swift in Sources */,
 				504BB9B927CE6FB20008963F /* MainSceneViewController.swift in Sources */,
 				505BF78327CE8B0A0092E1F2 /* Game.swift in Sources */,
 				504BB9B727CE5F720008963F /* Questions.swift in Sources */,
-				5003E0E527CF871D008E044E /* GameDelegate.swift in Sources */,
 				5095ED9727CE43300014CE3A /* AppDelegate.swift in Sources */,
 				5003E0E827CF9633008E044E /* ResultViewController.swift in Sources */,
 				505BF78527CE8B1D0092E1F2 /* GameSession.swift in Sources */,
+				5003E0ED27CF9C98008E044E /* GameResult.swift in Sources */,
+				5003E0F227CF9D87008E044E /* ResultTableViewCell.swift in Sources */,
 				504BB9BB27CE730E0008963F /* NavigationViewController.swift in Sources */,
 				5095ED9927CE43300014CE3A /* SceneDelegate.swift in Sources */,
 				50D17B6427CF803000E591C3 /* GameSceneViewController.swift in Sources */,

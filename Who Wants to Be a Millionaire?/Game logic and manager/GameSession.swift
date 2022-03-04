@@ -7,6 +7,11 @@
 
 import Foundation
 
+protocol GameActionDelegate: AnyObject {
+    var allQuestions: Int {get set}
+    func currentScoreGameSessin(scoreDelegate: Int)
+}
+
 class GameSession: GameActionDelegate {
     var allQuestions: Int
     private var trueAnswer: Int = 0
@@ -21,6 +26,10 @@ class GameSession: GameActionDelegate {
     
     init(question: Int) {
         allQuestions = question
+    }
+    
+    convenience init() {
+        self.init(question: 0)
     }
     
     func currentScoreGameSessin(scoreDelegate: Int) {

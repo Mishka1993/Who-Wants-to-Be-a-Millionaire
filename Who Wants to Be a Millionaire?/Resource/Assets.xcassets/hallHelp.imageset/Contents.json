@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "logoHame.png",
+      "filename" : "hallHelp.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "logoHame-1.png",
+      "filename" : "hallHelp-1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "logoHame-2.png",
+      "filename" : "hallHelp-2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
