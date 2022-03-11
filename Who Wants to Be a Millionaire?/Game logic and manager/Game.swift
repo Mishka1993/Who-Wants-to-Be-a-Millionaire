@@ -12,6 +12,8 @@ final class Game {
     var gameSession: GameSession?
     private var gameResults = [GameResult]()
     
+    private init() {}
+    
     func gameOver(){
         guard let gameSession = gameSession else { return }
         gameResults.append(
@@ -29,6 +31,9 @@ final class Game {
     func setAllGameResults(resulsts: [GameResult]) {
         gameResults = resulsts
     }
-    
-    private init() {}
+}
+extension Game: NSCopying {
+    func copy(with _: NSZone? = nil) -> Any {
+        return self
+    }
 }

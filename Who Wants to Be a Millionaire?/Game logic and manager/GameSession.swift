@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol GameActionDelegate: AnyObject {
+protocol GameActionDelegate {
     var allQuestions: Int {get set}
     func currentScoreGameSessin(scoreDelegate: Int)
 }
@@ -16,9 +16,6 @@ class GameSession: GameActionDelegate {
     var allQuestions: Int
     private var trueAnswer: Int = 0
     private var score: Int = 0
-    private var cullFriend: Bool = true
-    private var hallHelp: Bool = true
-    private var fifty: Bool = true
     
     lazy var isWinner: Bool = {
         allQuestions > 0 && allQuestions == trueAnswer
