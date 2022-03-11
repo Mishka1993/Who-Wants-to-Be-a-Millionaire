@@ -9,21 +9,43 @@ import UIKit
 
 class ResultViewController: UIViewController {
 
+    private var resultData = [GameResult]()
+
+    @IBOutlet var resultTableView: UITableView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        resultTableView.dataSource = self
 
-        // Do any additional setup after loading the view.
+        registerNib()
+        resultData = Game.shared.getAllGameResults()
+        resultTableView.reloadData()
     }
-    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func registerNib() {
+        let nibResult = UINib(nibName: "cellResult", bundle: nil)
+        resultTableView.register(nibResult, forCellReuseIdentifier: "cellResult")
     }
-    */
-
 }
+
+extension ResultViewController: UITableViewDataSource {
+    func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
+        resultData.count
+    }
+
+    func tableView(_: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = resultTableView.dequeueReusableCell(withIdentifier: "cellResult", for: indexPath) as! ResultTableViewCell
+        cell.configure(data: resultData[indexPath.row])
+        return cell
+    }
+
+    func tableView(_: UITableView, heightForRowAt _: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+
+    func tableView(_: UITableView, estimatedHeightForRowAt _: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+}
+
+
