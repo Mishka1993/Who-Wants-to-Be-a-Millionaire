@@ -12,4 +12,5 @@ struct GameResult: Codable {
     var trueAnswer: Int
     var allScore: Int
     var isWinner: Bool
+    var trueAnswerPercent: Double
 }

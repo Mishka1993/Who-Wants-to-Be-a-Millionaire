@@ -14,11 +14,11 @@ protocol GameActionDelegate {
 
 class GameSession: GameActionDelegate {
     var allQuestions: Int
-    private var trueAnswer: Int = 0
+    let trueAnswer = Observable<Int>(0)
     private var score: Int = 0
     
     lazy var isWinner: Bool = {
-        allQuestions > 0 && allQuestions == trueAnswer
+        allQuestions > 0 && allQuestions == trueAnswer.value
     }()
     
     init(question: Int) {
@@ -30,12 +30,12 @@ class GameSession: GameActionDelegate {
     }
     
     func currentScoreGameSessin(scoreDelegate: Int) {
-        trueAnswer += 1
+        trueAnswer.value += 1
         score += scoreDelegate
     }
     
     func getTrueAnswer() -> Int{
-        trueAnswer
+        trueAnswer.value
     }
     func getScore() -> Int{
         score

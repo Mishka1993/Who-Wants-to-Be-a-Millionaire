@@ -11,6 +11,7 @@ final class Game {
     static let shared = Game()
     var gameSession: GameSession?
     private var gameResults = [GameResult]()
+    var gameMode = Difficulty.stat
     
     private init() {}
     
@@ -20,9 +21,15 @@ final class Game {
             GameResult(allQuestion: gameSession.allQuestions,
                        trueAnswer: gameSession.getTrueAnswer(),
                        allScore: gameSession.getScore(),
-                       isWinner: gameSession.isWinner))
+                       isWinner: gameSession.isWinner,
+                       trueAnswerPercent: getPct())
+        )
         
         self.gameSession = nil
+    }
+    func getPct() -> Double {
+        guard let gameSession = gameSession else { return 0.0 }
+        return (Double(gameSession.getTrueAnswer()) / Double(gameSession.allQuestions)) * 100
     }
     func getAllGameResults() -> [GameResult] {
         return gameResults
